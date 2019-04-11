@@ -1,8 +1,13 @@
 <h1 id="my-heading">here's ur tasks</h1>
 
-<ul>
+<%= form_tag("/tasks", method: :post) do %>
+  <%= text_field_tag(:name) %>
+  <%= submit_tag("make yourself promise yourself to do something", id: "task-button") %>
+<% end %>
+
+<ul id="task-list">
   <% @tasks.each do |task| %>
-  <li class="task">
+  <li data-id="<%= task.id %>" class="task <%= "comleted" if task.completed? %>">
     <%= task.name %>
   </li>
   <% end %>
